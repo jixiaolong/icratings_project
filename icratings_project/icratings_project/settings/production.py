@@ -22,6 +22,14 @@ def get_env_setting(setting):
 		error_msg = "Set the %s env variable" % setting
 		raise ImproperlyConfigured(error_msg)
 
+########## DEBUG CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
+DEBUG = bool(environ.get('DJANGO_DEBUG', ''))
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
+TEMPLATE_DEBUG = DEBUG
+########## END DEBUG CONFIGURATION
+
 INSTALLED_APPS += ('gunicorn',)
 
 ########## EMAIL CONFIGURATION
@@ -66,12 +74,3 @@ DATABASES = {'default': dj_database_url.config()}
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = get_env_setting('SECRET_KEY')
 ########## END SECRET CONFIGURATION
-
-
-########## DEBUG CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', ''))
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-TEMPLATE_DEBUG = DEBUG
-########## END DEBUG CONFIGURATION
