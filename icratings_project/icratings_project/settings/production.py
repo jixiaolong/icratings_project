@@ -5,6 +5,10 @@ from os import environ
 
 from base import *
 
+import dj_database_url
+from memcacheify import memcacheify
+
+
 # Normally you should not import ANYTHING from Django directly
 # into your settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
@@ -48,13 +52,12 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 
 ########## DATABASE CONFIGURATION
-DATABASES = {}
+DATABASES = {'default': dj_database_url.config()}
 ########## END DATABASE CONFIGURATION
 
 
 ########## CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
-from memcacheify import memcacheify
 CACHES = memcacheify()
 ########## END CACHE CONFIGURATION
 
