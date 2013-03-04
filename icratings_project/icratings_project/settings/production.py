@@ -86,6 +86,12 @@ STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
 AWS_ACCESS_KEY_ID = get_env_setting('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = get_env_setting('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = get_env_setting('AWS_STORAGE_BUCKET_NAME')
-STATIC_URL = 'http//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = 'https://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+# Used to make sure that only changed files are uploaded with collectstatic
+AWS_PRELOAD_METADATA = True
+AWS_LOCATION = 'static'
+AWS_QUERYSTRING_EXPIRE = 7200
+#turns off https for static files (necessary)
+AWS_QUERYSTRING_AUTH = False
 ########## S3 STATIC CONFIGURATION
