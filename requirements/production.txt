@@ -6,3 +6,5 @@ gunicorn==0.17.2
 gevent==0.13.8
 django-heroku-memcacheify==0.4
 dj-database-url==0.2.1
+boto
+django-storages

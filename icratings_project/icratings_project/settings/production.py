@@ -30,7 +30,10 @@ DEBUG = bool(environ.get('DJANGO_DEBUG', ''))
 TEMPLATE_DEBUG = DEBUG
 ########## END DEBUG CONFIGURATION
 
-INSTALLED_APPS += ('gunicorn',)
+INSTALLED_APPS += (
+    'gunicorn',
+    'storages',
+)
 
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
@@ -76,3 +79,13 @@ SECRET_KEY = get_env_setting('SECRET_KEY')
 ########## END SECRET CONFIGURATION
 
 ALLOWED_HOSTS = ['.herokuapp.com', ]
+
+########## S3 STATIC CONFIGURATION
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
+AWS_ACCESS_KEY_ID = get_env_setting('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = get_env_setting('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = get_env_setting('AWS_STORAGE_BUCKET_NAME')
+STATIC_URL = '//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+########## S3 STATIC CONFIGURATION
