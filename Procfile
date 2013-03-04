@@ -1,1 +1,1 @@
-web: gunicorn $PYTHON_APP_NAME.wsgi -b 0.0.0.0:$PORT -w 4 -k gevent
+web: gunicorn_django -k gevent -b 0.0.0.0:8000 -w 4 --preload icratings_project.settings.production

@@ -224,5 +224,5 @@ LOGGING = {
 
 ########## WSGI CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-WSGI_APPLICATION = 'icratings_project.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 ########## END WSGI CONFIGURATION
