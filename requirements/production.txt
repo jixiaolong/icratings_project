@@ -2,6 +2,7 @@
 #	production that isn't in development.
 -r base.txt
 
-gunicorn==0.17.0
+gunicorn==0.17.2
+gevent
 django-heroku-memcacheify
 dj-database-url==0.2.1

@@ -1,1 +1,1 @@
-web: python icratings_project/manage.py runserver 0.0.0.0:$PORT --noreload --insecure
+web: gunicorn $PYTHON_APP_NAME.wsgi -b 0.0.0.0:$PORT -w 4 -k gevent
