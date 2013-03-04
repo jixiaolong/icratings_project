@@ -1,1 +1,1 @@
-web: gunicorn_django -k gevent -b 0.0.0.0:8000 -w 4 --preload icratings_project.settings.production
+web: gunicorn_django --pythonpath=$PYTHONPATH --settings=icratings_project.settings.production
